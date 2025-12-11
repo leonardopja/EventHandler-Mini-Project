@@ -13,19 +13,18 @@ let highScoreDisplay = document.querySelector(".highScore");
 let countQuestion = document.querySelector(".countQuestion");
 let message = document.querySelector(".message");
 
-// Seleciona nova imagem aleatória
 function selectRandomImage() {
     let index;
     do {
         index = Math.floor(Math.random() * arr.length);
-    } while (index === i); // garante que a mesma imagem não se repita
+    } while (index === i); 
     i = index;
     imgToGuess.src = arr[i];
 }
 
 // Função principal do jogo
 function play() {
-    if (i === null) selectRandomImage(); // seleciona primeira imagem se ainda não tiver
+    if (i === null) selectRandomImage();
 
     let letter = input.value.trim().toLowerCase();
     let word = arrWord[i].toLowerCase();
@@ -41,28 +40,20 @@ function play() {
         score -= 3;
     }
 
-    // Atualiza high score
+    
     if (score > highScore) highScore = score;
-
-    // Atualiza displays
     input.value = "";
     scoreDisplay.textContent = `Score : ${score}`;
     highScoreDisplay.textContent = `High Score : ${highScore}`;
-
-    // Incrementa contador e atualiza número da questão
     counter++;
     countQuestion.textContent = `Question number ${counter}`;
-
-    // Verifica se jogo acabou
     if (counter >= 3) {
         message.textContent = "Game Over!";
         btnPlayAgain.classList.remove("hidden");
     } else {
-        selectRandomImage(); // muda imagem se ainda houver rodada
+        selectRandomImage(); 
     }
 }
-
-// Reinicia o jogo
 function resetGame() {
     counter = 0;
     score = 0;
@@ -73,10 +64,6 @@ function resetGame() {
     btnPlayAgain.classList.add("hidden");
     selectRandomImage();
 }
-
-// Inicializa primeira imagem ao carregar a página
 window.addEventListener("load", selectRandomImage);
-
-// Eventos
 document.querySelector(".play").addEventListener("click", play);
 btnPlayAgain.addEventListener("click", resetGame);
