@@ -21,8 +21,6 @@ function selectRandomImage() {
     i = index;
     imgToGuess.src = arr[i];
 }
-
-// Função principal do jogo
 function play() {
     if (i === null) selectRandomImage();
 
